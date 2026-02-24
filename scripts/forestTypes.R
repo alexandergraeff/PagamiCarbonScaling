@@ -39,18 +39,18 @@
     
   ft_group <- function(code) {
     case_when(
-      code >= 101 & code <= 105 ~ "White–Red–Jack Pine",
-      code >= 121 & code <= 127 ~ "Spruce–Fir",
-      code >= 161 & code <= 167 ~ "Loblolly–Shortleaf Pine",
+      code >= 101 & code <= 105 ~ "White-Red-Jack Pine",
+      code >= 121 & code <= 127 ~ "Spruce-Fir",
+      code >= 161 & code <= 167 ~ "Loblolly-Shortleaf Pine",
       code == 171              ~ "Other Eastern Softwoods",
       code >= 381 & code <= 385 ~ "Exotic Softwoods",
       code == 391              ~ "Other Softwoods",
-      code >= 401 & code <= 409 ~ "Oak–Pine",
-      code >= 501 & code <= 520 ~ "Oak–Hickory",
-      code >= 601 & code <= 609 ~ "Oak–Gum–Cypress",
-      code >= 701 & code <= 709 ~ "Elm–Ash–Cottonwood",
-      code %in% c(801, 802, 805, 809) ~ "Maple–Beech–Birch",
-      code >= 901 & code <= 905 ~ "Aspen–Birch",
+      code >= 401 & code <= 409 ~ "Oak-Pine",
+      code >= 501 & code <= 520 ~ "Oak-Hickory",
+      code >= 601 & code <= 609 ~ "Oak-Gum-Cypress",
+      code >= 701 & code <= 709 ~ "Elm-Ash-Cottonwood",
+      code %in% c(801, 802, 805, 809) ~ "Maple-Beech-Birch",
+      code >= 901 & code <= 905 ~ "Aspen-Birch",
       code %in% c(991, 995)     ~ "Exotic Hardwoods",
       .default = "Other"
     )
@@ -263,4 +263,4 @@
     mutate(group = ft_group(code)) %>% 
     select(-rule)
   
-  write_excel_csv(x = plotTypes, file = "data/reference/forestTypes.csv")
+  write_csv(x = plotTypes, file = "data/reference/forestTypes.csv")

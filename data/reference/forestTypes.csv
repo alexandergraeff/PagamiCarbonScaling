@@ -1,135 +1,135 @@
-﻿"tpIdent","code","name","group"
-"R-001-01",901,"Aspen","Aspen–Birch"
-"R-001-03",121,"Balsam fir","Spruce–Fir"
-"R-001-04",901,"Aspen","Aspen–Birch"
-"R-001-05",102,"Red pine","White–Red–Jack Pine"
-"R-001-06",101,"Jack pine","White–Red–Jack Pine"
-"R-001-08",121,"Balsam fir","Spruce–Fir"
-"R-001-09",902,"Paper birch","Aspen–Birch"
-"R-001-11",902,"Paper birch","Aspen–Birch"
-"R-001-12",125,"Black spruce","Spruce–Fir"
-"RE-C3-01",902,"Paper birch","Aspen–Birch"
-"RE-C3-02",101,"Jack pine","White–Red–Jack Pine"
-"RE-H1-01",901,"Aspen","Aspen–Birch"
-"RE-H2-01",902,"Paper birch","Aspen–Birch"
-"RE218-06",901,"Aspen","Aspen–Birch"
-"RE235-11",102,"Red pine","White–Red–Jack Pine"
-"RE238-19",121,"Balsam fir","Spruce–Fir"
-"RE262-18",127,"Northern white-cedar","Spruce–Fir"
-"RE279-01",125,"Black spruce","Spruce–Fir"
-"RE283-02",102,"Red pine","White–Red–Jack Pine"
-"RE300-01",102,"Red pine","White–Red–Jack Pine"
-"RE301-01",122,"White spruce","Spruce–Fir"
-"RE301-02",101,"Jack pine","White–Red–Jack Pine"
-"RE302-02",409,"Other pine / hardwood","Oak–Pine"
-"RE303-01",901,"Aspen","Aspen–Birch"
-"RE303-02",126,"Tamarack (larch)","Spruce–Fir"
-"RE304-01",127,"Northern white-cedar","Spruce–Fir"
-"RE304-02",125,"Black spruce","Spruce–Fir"
-"RE304-03",122,"White spruce","Spruce–Fir"
-"RE305-01",103,"Eastern white pine","White–Red–Jack Pine"
-"RE305-02",103,"Eastern white pine","White–Red–Jack Pine"
-"RE305-03",101,"Jack pine","White–Red–Jack Pine"
-"RE305-04",101,"Jack pine","White–Red–Jack Pine"
-"RE306-01",809,"Red maple / upland","Maple–Beech–Birch"
-"RE306-02",902,"Paper birch","Aspen–Birch"
-"RE306-03",901,"Aspen","Aspen–Birch"
-"RE306-04",125,"Black spruce","Spruce–Fir"
-"RE307-01",902,"Paper birch","Aspen–Birch"
-"RE307-02",701,"Black ash / American elm / red maple","Elm–Ash–Cottonwood"
-"T-000-01",409,"Other pine / hardwood","Oak–Pine"
-"T-000-02",901,"Aspen","Aspen–Birch"
-"T-000-03",101,"Jack pine","White–Red–Jack Pine"
-"T-000-04",902,"Paper birch","Aspen–Birch"
-"T-000-05",901,"Aspen","Aspen–Birch"
-"T-000-06",901,"Aspen","Aspen–Birch"
-"T-000-07",901,"Aspen","Aspen–Birch"
-"T-000-08",902,"Paper birch","Aspen–Birch"
-"T-000-09",901,"Aspen","Aspen–Birch"
-"T-001-01",101,"Jack pine","White–Red–Jack Pine"
-"T-001-03",101,"Jack pine","White–Red–Jack Pine"
-"T-001-04",409,"Other pine / hardwood","Oak–Pine"
-"T-001-05",101,"Jack pine","White–Red–Jack Pine"
-"T-001-06",901,"Aspen","Aspen–Birch"
-"T-001-07",901,"Aspen","Aspen–Birch"
-"T-001-08",901,"Aspen","Aspen–Birch"
-"T-003-01",101,"Jack pine","White–Red–Jack Pine"
-"T-006-01",901,"Aspen","Aspen–Birch"
-"T-006-02",901,"Aspen","Aspen–Birch"
-"T-006-03",125,"Black spruce","Spruce–Fir"
-"T-006-04",125,"Black spruce","Spruce–Fir"
-"T-006-05",125,"Black spruce","Spruce–Fir"
-"T-006-06",121,"Balsam fir","Spruce–Fir"
-"T-006-07",125,"Black spruce","Spruce–Fir"
-"T-006-08",901,"Aspen","Aspen–Birch"
-"T-006-09",101,"Jack pine","White–Red–Jack Pine"
-"T-006-10",101,"Jack pine","White–Red–Jack Pine"
-"T-006-13",125,"Black spruce","Spruce–Fir"
-"T-006-14",101,"Jack pine","White–Red–Jack Pine"
-"T-006-15",125,"Black spruce","Spruce–Fir"
-"T-006-16",101,"Jack pine","White–Red–Jack Pine"
-"T-007-01",127,"Northern white-cedar","Spruce–Fir"
-"T-007-07",125,"Black spruce","Spruce–Fir"
-"T-007-09",901,"Aspen","Aspen–Birch"
-"T-007-10",901,"Aspen","Aspen–Birch"
-"T-007-11",901,"Aspen","Aspen–Birch"
-"T-007-12",901,"Aspen","Aspen–Birch"
-"T-008-01",409,"Other pine / hardwood","Oak–Pine"
-"T-008-02",902,"Paper birch","Aspen–Birch"
-"T-008-10",902,"Paper birch","Aspen–Birch"
-"T-008-11",901,"Aspen","Aspen–Birch"
-"T-008-12",901,"Aspen","Aspen–Birch"
-"T-008-13",901,"Aspen","Aspen–Birch"
-"T-020-01",902,"Paper birch","Aspen–Birch"
-"T-020-02",103,"Eastern white pine","White–Red–Jack Pine"
-"T-040-01",101,"Jack pine","White–Red–Jack Pine"
-"T-040-02",901,"Aspen","Aspen–Birch"
-"T-040-03",902,"Paper birch","Aspen–Birch"
-"T-040-04",125,"Black spruce","Spruce–Fir"
-"T-040-05",125,"Black spruce","Spruce–Fir"
-"T-041-01",101,"Jack pine","White–Red–Jack Pine"
-"T-041-03",409,"Other pine / hardwood","Oak–Pine"
-"T-042-01",902,"Paper birch","Aspen–Birch"
-"T-042-02",901,"Aspen","Aspen–Birch"
-"T-042-03",809,"Red maple / upland","Maple–Beech–Birch"
-"T-042-04",103,"Eastern white pine","White–Red–Jack Pine"
-"T-042-05",901,"Aspen","Aspen–Birch"
-"T-043-01",901,"Aspen","Aspen–Birch"
-"T-043-02",902,"Paper birch","Aspen–Birch"
-"T-043-03",125,"Black spruce","Spruce–Fir"
-"T-043-04",125,"Black spruce","Spruce–Fir"
-"T-043-05",125,"Black spruce","Spruce–Fir"
-"T-043-06",902,"Paper birch","Aspen–Birch"
-"T-043-07",127,"Northern white-cedar","Spruce–Fir"
-"T-044-01",125,"Black spruce","Spruce–Fir"
-"T-044-02",125,"Black spruce","Spruce–Fir"
-"T-050-01",101,"Jack pine","White–Red–Jack Pine"
-"T-051-02",101,"Jack pine","White–Red–Jack Pine"
-"T-053-01",902,"Paper birch","Aspen–Birch"
-"T-053-02",101,"Jack pine","White–Red–Jack Pine"
-"T-053-04",101,"Jack pine","White–Red–Jack Pine"
-"T-053-05",101,"Jack pine","White–Red–Jack Pine"
-"T-053-06",101,"Jack pine","White–Red–Jack Pine"
-"T-053-07",101,"Jack pine","White–Red–Jack Pine"
-"T-100-04",101,"Jack pine","White–Red–Jack Pine"
-"T-100-90",101,"Jack pine","White–Red–Jack Pine"
-"T-101-01",902,"Paper birch","Aspen–Birch"
-"T-101-02",121,"Balsam fir","Spruce–Fir"
-"T-101-03",125,"Black spruce","Spruce–Fir"
-"T-101-04",121,"Balsam fir","Spruce–Fir"
-"T-101-05",127,"Northern white-cedar","Spruce–Fir"
-"T-101-09",902,"Paper birch","Aspen–Birch"
-"T-102-03",101,"Jack pine","White–Red–Jack Pine"
-"T-102-04",101,"Jack pine","White–Red–Jack Pine"
-"T-102-05",101,"Jack pine","White–Red–Jack Pine"
-"T-102-06",101,"Jack pine","White–Red–Jack Pine"
-"T-104-02",902,"Paper birch","Aspen–Birch"
-"T-104-04",125,"Black spruce","Spruce–Fir"
-"T-110-01",902,"Paper birch","Aspen–Birch"
-"T-110-02",902,"Paper birch","Aspen–Birch"
-"T-111-02",901,"Aspen","Aspen–Birch"
-"T-111-03",103,"Eastern white pine","White–Red–Jack Pine"
-"T-111-04",121,"Balsam fir","Spruce–Fir"
-"T-112-01",409,"Other pine / hardwood","Oak–Pine"
-"T-112-02",101,"Jack pine","White–Red–Jack Pine"
-"TB006-12",101,"Jack pine","White–Red–Jack Pine"
+tpIdent,code,name,group
+R-001-01,901,Aspen,Aspen-Birch
+R-001-03,121,Balsam fir,Spruce-Fir
+R-001-04,901,Aspen,Aspen-Birch
+R-001-05,102,Red pine,White-Red-Jack Pine
+R-001-06,101,Jack pine,White-Red-Jack Pine
+R-001-08,121,Balsam fir,Spruce-Fir
+R-001-09,902,Paper birch,Aspen-Birch
+R-001-11,902,Paper birch,Aspen-Birch
+R-001-12,125,Black spruce,Spruce-Fir
+RE-C3-01,902,Paper birch,Aspen-Birch
+RE-C3-02,101,Jack pine,White-Red-Jack Pine
+RE-H1-01,901,Aspen,Aspen-Birch
+RE-H2-01,902,Paper birch,Aspen-Birch
+RE218-06,901,Aspen,Aspen-Birch
+RE235-11,102,Red pine,White-Red-Jack Pine
+RE238-19,121,Balsam fir,Spruce-Fir
+RE262-18,127,Northern white-cedar,Spruce-Fir
+RE279-01,125,Black spruce,Spruce-Fir
+RE283-02,102,Red pine,White-Red-Jack Pine
+RE300-01,102,Red pine,White-Red-Jack Pine
+RE301-01,122,White spruce,Spruce-Fir
+RE301-02,101,Jack pine,White-Red-Jack Pine
+RE302-02,409,Other pine / hardwood,Oak-Pine
+RE303-01,901,Aspen,Aspen-Birch
+RE303-02,126,Tamarack (larch),Spruce-Fir
+RE304-01,127,Northern white-cedar,Spruce-Fir
+RE304-02,125,Black spruce,Spruce-Fir
+RE304-03,122,White spruce,Spruce-Fir
+RE305-01,103,Eastern white pine,White-Red-Jack Pine
+RE305-02,103,Eastern white pine,White-Red-Jack Pine
+RE305-03,101,Jack pine,White-Red-Jack Pine
+RE305-04,101,Jack pine,White-Red-Jack Pine
+RE306-01,809,Red maple / upland,Maple-Beech-Birch
+RE306-02,902,Paper birch,Aspen-Birch
+RE306-03,901,Aspen,Aspen-Birch
+RE306-04,125,Black spruce,Spruce-Fir
+RE307-01,902,Paper birch,Aspen-Birch
+RE307-02,701,Black ash / American elm / red maple,Elm-Ash-Cottonwood
+T-000-01,409,Other pine / hardwood,Oak-Pine
+T-000-02,901,Aspen,Aspen-Birch
+T-000-03,101,Jack pine,White-Red-Jack Pine
+T-000-04,902,Paper birch,Aspen-Birch
+T-000-05,901,Aspen,Aspen-Birch
+T-000-06,901,Aspen,Aspen-Birch
+T-000-07,901,Aspen,Aspen-Birch
+T-000-08,902,Paper birch,Aspen-Birch
+T-000-09,901,Aspen,Aspen-Birch
+T-001-01,101,Jack pine,White-Red-Jack Pine
+T-001-03,101,Jack pine,White-Red-Jack Pine
+T-001-04,409,Other pine / hardwood,Oak-Pine
+T-001-05,101,Jack pine,White-Red-Jack Pine
+T-001-06,901,Aspen,Aspen-Birch
+T-001-07,901,Aspen,Aspen-Birch
+T-001-08,901,Aspen,Aspen-Birch
+T-003-01,101,Jack pine,White-Red-Jack Pine
+T-006-01,901,Aspen,Aspen-Birch
+T-006-02,901,Aspen,Aspen-Birch
+T-006-03,125,Black spruce,Spruce-Fir
+T-006-04,125,Black spruce,Spruce-Fir
+T-006-05,125,Black spruce,Spruce-Fir
+T-006-06,121,Balsam fir,Spruce-Fir
+T-006-07,125,Black spruce,Spruce-Fir
+T-006-08,901,Aspen,Aspen-Birch
+T-006-09,101,Jack pine,White-Red-Jack Pine
+T-006-10,101,Jack pine,White-Red-Jack Pine
+T-006-13,125,Black spruce,Spruce-Fir
+T-006-14,101,Jack pine,White-Red-Jack Pine
+T-006-15,125,Black spruce,Spruce-Fir
+T-006-16,101,Jack pine,White-Red-Jack Pine
+T-007-01,127,Northern white-cedar,Spruce-Fir
+T-007-07,125,Black spruce,Spruce-Fir
+T-007-09,901,Aspen,Aspen-Birch
+T-007-10,901,Aspen,Aspen-Birch
+T-007-11,901,Aspen,Aspen-Birch
+T-007-12,901,Aspen,Aspen-Birch
+T-008-01,409,Other pine / hardwood,Oak-Pine
+T-008-02,902,Paper birch,Aspen-Birch
+T-008-10,902,Paper birch,Aspen-Birch
+T-008-11,901,Aspen,Aspen-Birch
+T-008-12,901,Aspen,Aspen-Birch
+T-008-13,901,Aspen,Aspen-Birch
+T-020-01,902,Paper birch,Aspen-Birch
+T-020-02,103,Eastern white pine,White-Red-Jack Pine
+T-040-01,101,Jack pine,White-Red-Jack Pine
+T-040-02,901,Aspen,Aspen-Birch
+T-040-03,902,Paper birch,Aspen-Birch
+T-040-04,125,Black spruce,Spruce-Fir
+T-040-05,125,Black spruce,Spruce-Fir
+T-041-01,101,Jack pine,White-Red-Jack Pine
+T-041-03,409,Other pine / hardwood,Oak-Pine
+T-042-01,902,Paper birch,Aspen-Birch
+T-042-02,901,Aspen,Aspen-Birch
+T-042-03,809,Red maple / upland,Maple-Beech-Birch
+T-042-04,103,Eastern white pine,White-Red-Jack Pine
+T-042-05,901,Aspen,Aspen-Birch
+T-043-01,901,Aspen,Aspen-Birch
+T-043-02,902,Paper birch,Aspen-Birch
+T-043-03,125,Black spruce,Spruce-Fir
+T-043-04,125,Black spruce,Spruce-Fir
+T-043-05,125,Black spruce,Spruce-Fir
+T-043-06,902,Paper birch,Aspen-Birch
+T-043-07,127,Northern white-cedar,Spruce-Fir
+T-044-01,125,Black spruce,Spruce-Fir
+T-044-02,125,Black spruce,Spruce-Fir
+T-050-01,101,Jack pine,White-Red-Jack Pine
+T-051-02,101,Jack pine,White-Red-Jack Pine
+T-053-01,902,Paper birch,Aspen-Birch
+T-053-02,101,Jack pine,White-Red-Jack Pine
+T-053-04,101,Jack pine,White-Red-Jack Pine
+T-053-05,101,Jack pine,White-Red-Jack Pine
+T-053-06,101,Jack pine,White-Red-Jack Pine
+T-053-07,101,Jack pine,White-Red-Jack Pine
+T-100-04,101,Jack pine,White-Red-Jack Pine
+T-100-90,101,Jack pine,White-Red-Jack Pine
+T-101-01,902,Paper birch,Aspen-Birch
+T-101-02,121,Balsam fir,Spruce-Fir
+T-101-03,125,Black spruce,Spruce-Fir
+T-101-04,121,Balsam fir,Spruce-Fir
+T-101-05,127,Northern white-cedar,Spruce-Fir
+T-101-09,902,Paper birch,Aspen-Birch
+T-102-03,101,Jack pine,White-Red-Jack Pine
+T-102-04,101,Jack pine,White-Red-Jack Pine
+T-102-05,101,Jack pine,White-Red-Jack Pine
+T-102-06,101,Jack pine,White-Red-Jack Pine
+T-104-02,902,Paper birch,Aspen-Birch
+T-104-04,125,Black spruce,Spruce-Fir
+T-110-01,902,Paper birch,Aspen-Birch
+T-110-02,902,Paper birch,Aspen-Birch
+T-111-02,901,Aspen,Aspen-Birch
+T-111-03,103,Eastern white pine,White-Red-Jack Pine
+T-111-04,121,Balsam fir,Spruce-Fir
+T-112-01,409,Other pine / hardwood,Oak-Pine
+T-112-02,101,Jack pine,White-Red-Jack Pine
+TB006-12,101,Jack pine,White-Red-Jack Pine
