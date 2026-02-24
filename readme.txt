@@ -16,6 +16,27 @@ the Pagami Creek Fire in upland plots.
 
 _______________________________________________________________________________
 
+Environment Reproduction
+
+This project uses [`renv`](https://rstudio.github.io/renv/) to ensure a 
+reproducible R package environment.
+Follow these steps to get started:
+
+1. Install R and RStudio
+
+2. Set up the environment
+	- Open the .Rproj file (Carbon Scaling.Rproj)
+	- Find, open, and run scripts/environmentSetup.R"
+
+This will:
+
+Install renv if it’s not already installed
+Restore all packages from renv.lock
+
+Once the environment is ready, you can run all scripts.
+
+_______________________________________________________________________________
+
 Git
 
 - This is a local git repository
@@ -40,7 +61,8 @@ Contents
 3. 	│   ├───raw
 4. 	│   └───reference
 5.	├───output
-6.	└───scripts
+6.	├───renv
+7.	└───scripts
 
 
 3. The raw file with biomass data.
@@ -50,6 +72,7 @@ Contents
 	  forestTypes.csv
 	- severityCrn_forestType_plot.csv - additional plot reference data
 	  including other forest type designations and burn severity
+6. Environment snapshot data, controlled by the renv package
 
 _______________________________________________________________________________
 	
@@ -77,8 +100,9 @@ Generation of Forest Types
 	lowland associate biomass threshold: if (FRNI + THOC + PIMA) / 
 	Total ≥ 20%, assign 708 (lowland), else 809 (upland).
 
-_______________________________________________________________________________
+ - See scripts/forestTypes.R
 
+_______________________________________________________________________________
 _______________________________________________________________________________
 
 
