@@ -137,7 +137,8 @@ data frame used to perform downstream analyses.
 ```{r Write Processed Data Table, include=FALSE}
 
   data %>% 
-    rename(crownBurnSeverity = crnSev) %>% 
+    rename(crownBurnSeverity = crnSev,
+           "biomassTotal (mg/ha)" = biomassTotal) %>% 
     write_csv(file = here("data/processed/biomassData_processed.csv"))
 
 ```
