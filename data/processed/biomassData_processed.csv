@@ -1,0 +1,135 @@
+tpIdent,biomassTotal,forestType_code,forestType,forestType_group,ref_burn,crnSev
+R-001-01,58.62192020628308,901,Aspen,Aspen-Birch,burn,3
+R-001-03,61.544441162525374,121,Balsam fir,Spruce-Fir,burn,3
+R-001-04,46.98842335290052,901,Aspen,Aspen-Birch,burn,1
+R-001-05,112.96874381976949,102,Red pine,White-Red-Jack Pine,burn,4
+R-001-06,49.62254570040818,101,Jack pine,White-Red-Jack Pine,burn,4
+R-001-08,58.4502626162088,121,Balsam fir,Spruce-Fir,burn,4
+R-001-09,43.55361603049492,902,Paper birch,Aspen-Birch,burn,4
+R-001-11,41.820403247008706,902,Paper birch,Aspen-Birch,burn,4
+R-001-12,19.576556622134927,125,Black spruce,Spruce-Fir,burn,1
+RE-C3-01,119.60548742485874,902,Paper birch,Aspen-Birch,reference,NA
+RE-C3-02,101.64855946091997,101,Jack pine,White-Red-Jack Pine,reference,NA
+RE-H1-01,51.95361661454159,901,Aspen,Aspen-Birch,reference,NA
+RE-H2-01,63.934432250452716,902,Paper birch,Aspen-Birch,reference,NA
+RE218-06,35.92467375150227,901,Aspen,Aspen-Birch,reference,NA
+RE235-11,123.7795614102541,102,Red pine,White-Red-Jack Pine,reference,NA
+RE238-19,64.29046238172457,121,Balsam fir,Spruce-Fir,reference,NA
+RE262-18,136.55265761775897,127,Northern white-cedar,Spruce-Fir,reference,NA
+RE279-01,59.089453887519944,125,Black spruce,Spruce-Fir,reference,NA
+RE283-02,75.12009284406665,102,Red pine,White-Red-Jack Pine,reference,NA
+RE300-01,170.105073509636,102,Red pine,White-Red-Jack Pine,reference,NA
+RE301-01,98.2839458284614,122,White spruce,Spruce-Fir,reference,NA
+RE301-02,72.30884069743641,101,Jack pine,White-Red-Jack Pine,reference,NA
+RE302-02,217.50807221029626,409,Other pine / hardwood,Oak-Pine,reference,NA
+RE303-01,128.57153250387378,901,Aspen,Aspen-Birch,reference,NA
+RE303-02,58.52499447905471,126,Tamarack (larch),Spruce-Fir,reference,NA
+RE304-01,147.77031063010347,127,Northern white-cedar,Spruce-Fir,reference,NA
+RE304-02,63.1849776644219,125,Black spruce,Spruce-Fir,reference,NA
+RE304-03,64.73943229725013,122,White spruce,Spruce-Fir,reference,NA
+RE305-01,87.29908864960008,103,Eastern white pine,White-Red-Jack Pine,reference,NA
+RE305-02,98.24205025407434,103,Eastern white pine,White-Red-Jack Pine,reference,NA
+RE305-03,59.77487304801216,101,Jack pine,White-Red-Jack Pine,reference,NA
+RE305-04,157.90029705400752,101,Jack pine,White-Red-Jack Pine,reference,NA
+RE306-01,57.22136250104039,809,Red maple / upland,Maple-Beech-Birch,reference,NA
+RE306-02,59.99490906108893,902,Paper birch,Aspen-Birch,reference,NA
+RE306-03,125.13836634328952,901,Aspen,Aspen-Birch,reference,NA
+RE306-04,130.51305260410265,125,Black spruce,Spruce-Fir,reference,NA
+RE307-01,65.69792603198147,902,Paper birch,Aspen-Birch,reference,NA
+RE307-02,75.7182510269801,701,Black ash / American elm / red maple,Elm-Ash-Cottonwood,reference,NA
+T-000-01,27.045732681343054,409,Other pine / hardwood,Oak-Pine,burn,4
+T-000-02,43.90394189028092,901,Aspen,Aspen-Birch,burn,4
+T-000-03,45.19502876120386,101,Jack pine,White-Red-Jack Pine,burn,4
+T-000-04,71.37604236434161,902,Paper birch,Aspen-Birch,burn,3
+T-000-05,33.52971002050165,901,Aspen,Aspen-Birch,burn,2
+T-000-06,49.33772682589972,901,Aspen,Aspen-Birch,burn,3
+T-000-07,9.645528046086659,901,Aspen,Aspen-Birch,burn,4
+T-000-08,24.662115916880357,902,Paper birch,Aspen-Birch,burn,2
+T-000-09,45.51636580585719,901,Aspen,Aspen-Birch,burn,3
+T-001-01,64.66655237948753,101,Jack pine,White-Red-Jack Pine,burn,4
+T-001-03,120.03037092709366,101,Jack pine,White-Red-Jack Pine,burn,4
+T-001-04,65.39757053809906,409,Other pine / hardwood,Oak-Pine,burn,3
+T-001-05,64.16768547468865,101,Jack pine,White-Red-Jack Pine,burn,4
+T-001-06,70.9510021225433,901,Aspen,Aspen-Birch,burn,4
+T-001-07,31.79733302836273,901,Aspen,Aspen-Birch,burn,4
+T-001-08,32.613289326959716,901,Aspen,Aspen-Birch,burn,4
+T-003-01,70.97215421704263,101,Jack pine,White-Red-Jack Pine,burn,4
+T-006-01,88.8385800174899,901,Aspen,Aspen-Birch,burn,1
+T-006-02,87.3563846848541,901,Aspen,Aspen-Birch,burn,2
+T-006-03,50.08007881694162,125,Black spruce,Spruce-Fir,burn,1
+T-006-04,71.34129091911349,125,Black spruce,Spruce-Fir,burn,3
+T-006-05,57.16555223685608,125,Black spruce,Spruce-Fir,burn,1
+T-006-06,41.026616045216294,121,Balsam fir,Spruce-Fir,burn,3
+T-006-07,53.285493741292946,125,Black spruce,Spruce-Fir,burn,1
+T-006-08,106.85699862327296,901,Aspen,Aspen-Birch,burn,1
+T-006-09,105.33583280844952,101,Jack pine,White-Red-Jack Pine,burn,2
+T-006-10,85.0886553054098,101,Jack pine,White-Red-Jack Pine,burn,1
+T-006-13,86.80775309574473,125,Black spruce,Spruce-Fir,burn,4
+T-006-14,88.35116132018443,101,Jack pine,White-Red-Jack Pine,burn,4
+T-006-15,91.779693139118,125,Black spruce,Spruce-Fir,burn,3
+T-006-16,36.28733391550215,101,Jack pine,White-Red-Jack Pine,burn,NA
+T-007-01,111.42131214358594,127,Northern white-cedar,Spruce-Fir,burn,4
+T-007-07,46.026256408016806,125,Black spruce,Spruce-Fir,burn,3
+T-007-09,38.02662901576069,901,Aspen,Aspen-Birch,burn,3
+T-007-10,66.87982566844508,901,Aspen,Aspen-Birch,burn,2
+T-007-11,71.61118108203138,901,Aspen,Aspen-Birch,burn,2
+T-007-12,61.77859892885837,901,Aspen,Aspen-Birch,burn,2
+T-008-01,117.33508741991373,409,Other pine / hardwood,Oak-Pine,burn,4
+T-008-02,51.728115489776656,902,Paper birch,Aspen-Birch,burn,4
+T-008-10,92.92742072447935,902,Paper birch,Aspen-Birch,burn,4
+T-008-11,80.37809079806956,901,Aspen,Aspen-Birch,burn,4
+T-008-12,86.95531404512732,901,Aspen,Aspen-Birch,burn,4
+T-008-13,126.45613365267613,901,Aspen,Aspen-Birch,burn,NA
+T-020-01,48.492618375159914,902,Paper birch,Aspen-Birch,burn,4
+T-020-02,53.20382128103616,103,Eastern white pine,White-Red-Jack Pine,burn,2
+T-040-01,114.85643267183347,101,Jack pine,White-Red-Jack Pine,burn,4
+T-040-02,96.14725366761547,901,Aspen,Aspen-Birch,burn,4
+T-040-03,93.66303814524083,902,Paper birch,Aspen-Birch,burn,4
+T-040-04,65.21399683939443,125,Black spruce,Spruce-Fir,burn,4
+T-040-05,45.31671891620637,125,Black spruce,Spruce-Fir,burn,4
+T-041-01,82.18652142960526,101,Jack pine,White-Red-Jack Pine,burn,2
+T-041-03,84.97043973727362,409,Other pine / hardwood,Oak-Pine,burn,1
+T-042-01,46.11176925140099,902,Paper birch,Aspen-Birch,burn,1
+T-042-02,62.669867826858734,901,Aspen,Aspen-Birch,burn,1
+T-042-03,90.37503774439003,809,Red maple / upland,Maple-Beech-Birch,burn,1
+T-042-04,81.849520040728,103,Eastern white pine,White-Red-Jack Pine,burn,1
+T-042-05,65.4789810971165,901,Aspen,Aspen-Birch,burn,1
+T-043-01,33.1236574210019,901,Aspen,Aspen-Birch,burn,4
+T-043-02,20.430765745504214,902,Paper birch,Aspen-Birch,burn,4
+T-043-03,62.91425988916419,125,Black spruce,Spruce-Fir,burn,4
+T-043-04,66.52918375914784,125,Black spruce,Spruce-Fir,burn,4
+T-043-05,51.50905448381897,125,Black spruce,Spruce-Fir,burn,4
+T-043-06,49.19575667603597,902,Paper birch,Aspen-Birch,burn,3
+T-043-07,41.4384601183842,127,Northern white-cedar,Spruce-Fir,burn,4
+T-044-01,71.92460248931346,125,Black spruce,Spruce-Fir,burn,4
+T-044-02,33.129924035285406,125,Black spruce,Spruce-Fir,burn,4
+T-050-01,16.667830471553003,101,Jack pine,White-Red-Jack Pine,burn,4
+T-051-02,125.85616599158428,101,Jack pine,White-Red-Jack Pine,burn,4
+T-053-01,74.04536830278863,902,Paper birch,Aspen-Birch,burn,4
+T-053-02,71.66784258966285,101,Jack pine,White-Red-Jack Pine,burn,4
+T-053-04,70.98688647542069,101,Jack pine,White-Red-Jack Pine,burn,4
+T-053-05,45.25437783712537,101,Jack pine,White-Red-Jack Pine,burn,4
+T-053-06,54.64382553395596,101,Jack pine,White-Red-Jack Pine,burn,4
+T-053-07,84.5162831646123,101,Jack pine,White-Red-Jack Pine,burn,4
+T-100-04,94.59729543734319,101,Jack pine,White-Red-Jack Pine,burn,1
+T-100-90,108.28566639058687,101,Jack pine,White-Red-Jack Pine,burn,1
+T-101-01,49.79438768272155,902,Paper birch,Aspen-Birch,burn,3
+T-101-02,14.69013596203966,121,Balsam fir,Spruce-Fir,burn,4
+T-101-03,61.55833661000462,125,Black spruce,Spruce-Fir,burn,3
+T-101-04,65.43831712917647,121,Balsam fir,Spruce-Fir,burn,4
+T-101-05,125.43804199685994,127,Northern white-cedar,Spruce-Fir,burn,3
+T-101-09,71.81593822986429,902,Paper birch,Aspen-Birch,burn,3
+T-102-03,78.453165627924065,101,Jack pine,White-Red-Jack Pine,burn,4
+T-102-04,103.82583845521387,101,Jack pine,White-Red-Jack Pine,burn,4
+T-102-05,135.48240794848343,101,Jack pine,White-Red-Jack Pine,burn,4
+T-102-06,173.2063296911659,101,Jack pine,White-Red-Jack Pine,burn,4
+T-104-02,43.65265703836301,902,Paper birch,Aspen-Birch,burn,4
+T-104-04,38.531130768678416,125,Black spruce,Spruce-Fir,burn,4
+T-110-01,63.26678176662823,902,Paper birch,Aspen-Birch,burn,4
+T-110-02,45.03363487106269,902,Paper birch,Aspen-Birch,burn,4
+T-111-02,156.846739596492,901,Aspen,Aspen-Birch,burn,3
+T-111-03,122.54231719135322,103,Eastern white pine,White-Red-Jack Pine,burn,3
+T-111-04,23.16924406559884,121,Balsam fir,Spruce-Fir,burn,3
+T-112-01,85.05537555793575,409,Other pine / hardwood,Oak-Pine,burn,3
+T-112-02,93.42411682205926,101,Jack pine,White-Red-Jack Pine,burn,3
+TB006-12,108.60786951579378,101,Jack pine,White-Red-Jack Pine,burn,3

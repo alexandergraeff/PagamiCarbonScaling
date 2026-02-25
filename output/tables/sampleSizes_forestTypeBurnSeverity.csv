@@ -1,0 +1,41 @@
+forestType,crnSev,burn,reference
+Aspen,1,5,0
+Aspen,2,5,0
+Aspen,3,5,0
+Aspen,4,9,0
+Aspen,NA,1,4
+Balsam fir,3,3,0
+Balsam fir,4,3,0
+Black spruce,1,4,0
+Black spruce,3,4,0
+Black spruce,4,9,0
+Eastern white pine,1,1,0
+Eastern white pine,2,1,0
+Eastern white pine,3,1,0
+Jack pine,1,3,0
+Jack pine,2,2,0
+Jack pine,3,2,0
+Jack pine,4,19,0
+Jack pine,NA,1,4
+Northern white-cedar,3,1,0
+Northern white-cedar,4,2,0
+Other pine / hardwood,1,1,0
+Other pine / hardwood,3,2,0
+Other pine / hardwood,4,2,0
+Paper birch,1,1,0
+Paper birch,2,1,0
+Paper birch,3,4,0
+Paper birch,4,11,0
+Red maple / upland,1,1,0
+Red pine,4,1,0
+Balsam fir,NA,0,1
+Black ash / American elm / red maple,NA,0,1
+Black spruce,NA,0,3
+Eastern white pine,NA,0,2
+Northern white-cedar,NA,0,2
+Other pine / hardwood,NA,0,1
+Paper birch,NA,0,4
+Red maple / upland,NA,0,1
+Red pine,NA,0,3
+Tamarack (larch),NA,0,1
+White spruce,NA,0,2

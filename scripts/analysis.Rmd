@@ -1,0 +1,788 @@
+---
+title: "Estimating Biomoss Loss from Pagami Creek Fire"
+author: "Alexander Graeff"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+---
+
+<style>
+pre {
+  overflow-x: auto;
+}
+pre code {
+  white-space: pre; /* Prevents wrapping, forces horizontal scroll */
+}
+</style>
+
+```{r Setup, include=FALSE}
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.width = 10,        # Default plotting width (inches)
+  fig.height = 6,        # Default plotting height
+  out.width = "100%",    # Fit figure to page width in output
+  fig.align = "center"   # Center figuresecho = TRUE)
+)
+
+Sys.setlocale("LC_CTYPE", "English_United States.utf8")
+
+```
+
+```{r, echo = FALSE, results="hide", message=FALSE, warning=FALSE, out.extra='style="margin-bottom:-20px;"'}
+```
+
+```{r Clean Slate, include=FALSE}
+
+  graphics.off()
+  rm(list=ls())
+  gc()
+
+```
+
+```{r Load Packages, include=FALSE}
+
+  library(tidyverse)
+  library(readxl)
+  library(here)
+  library(rlang)
+
+```
+
+# Goal
+
+Summarize biomass data per forest type for reference and burn plots: calculate 
+an average biomass per forest type and then take the difference between 
+reference plots and burns plots within a forest type to estimate the amount of 
+biomass lost from the burn. 
+
+# Create Formulas for Repeated Code
+
+```{r Formulas}
+
+  group_count <- function(data, ...) {
+    data %>% 
+      group_by(...) %>% 
+        summarize(n = n(), .groups = "keep") %>% 
+        ungroup() %>% 
+      pivot_wider(names_from = ref_burn, values_from = n, values_fill = 0)
+  }
+
+```
+
+# Import Data
+
+Biomass calculations in the raw biomass data were made by Sue Lietz. Metadata is 
+included in the file, but not all supporting data for biomass calculations are 
+supplied in this directory. For more information about biomass calculations, 
+contact the author.
+
+forestTypes were generated with scripts/forestTypes.R
+
+severity was generated in a different repository, but is essentially a 
+compilation of plot names, crown burn severity, locations, and forest type 
+classifications (different than the forestTypes imported separately).
+
+```{r Import Data}
+
+# biomass data ----
+
+  biomass.raw <- read_xls(path = here("data/raw/pagami_DOMspecies_bio20131210.xls"), 
+                      sheet = "DOM_spp")
+
+  head(biomass.raw)
+  
+# forest types ----
+
+  forestTypes <- read_csv(file = here("data/reference/forestTypes.csv"), 
+                          show_col_types = FALSE,
+                          locale = locale(encoding = "UTF-8")) %>% 
+    rename(forestType_code = code,  # rename some things so they are more understandable below
+           forestType = name, 
+           forestType_group = group)
+  
+  head(forestTypes)
+
+# severity ----
+
+  severity <- read_csv(file = here("data/reference/severityCrn_forestType_plot.csv"), 
+                       show_col_types = FALSE) 
+  
+  head(severity)
+
+```
+
+# Format Data
+
+Here we pare down the biomass table and join the reference tables, then select 
+columns relevant to the analyses. This is saved in data/processed as it is the 
+data frame used to perform downstream analyses.
+
+```{r Format Data}
+
+  data <- biomass.raw %>% 
+    select(1, 4) %>%  # just take the total biomass and plot ID columns
+    rename(tpIdent = 1, biomassTotal = 2) %>%  # rename them
+    left_join(forestTypes, join_by(tpIdent)) %>%  # join the forest types data
+    left_join(severity %>%  # join the severity data
+                select(TP_IDENT, ref_burn, SeverityIndex, contains("crn")),  # (just a subset of it)
+              join_by(tpIdent == TP_IDENT)) %>% 
+    select(tpIdent:ref_burn, crnSev)
+
+  head(data)
+
+```
+
+```{r Write Processed Data Table, include=FALSE}
+
+  data %>% 
+    write_csv(file = here("data/processed/biomassData_processed.csv"))
+
+```
+
+# Check Group Sizes
+
+At a minimum, for biomass comparisons, we need one reference plot in each forest 
+type for which there are burn plots.
+
+Indeed we do have at least one reference plot for each burn plot forest tyoe, 
+however the sample sizes are pretty small where many have just 1.
+
+```{r Check Group Sizes - Forest Type, rows.print=13}
+
+(d <- data %>% 
+    group_count(ref_burn, forestType))
+  
+```
+
+```{r Check Group Sizes - Forest Type - Write, include=FALSE}
+
+  write_csv(x = d, file = here("output/tables/sampleSizes_forestType.csv"))
+
+  rm(d)
+
+```
+
+Let's look at the forest type groups as well.
+
+There are 3 groups with pretty good sample sizes, and a couple with still-low 
+sample sizes. Of course, with this, we lose a lot of forest type detail.
+
+```{r Check Group Sizes - Forest Type Groups}
+
+  (d <- data %>% 
+    group_count(ref_burn, forestType_group))
+
+```
+
+```{r Check Group Sizes - Forest Type Groups - Write, include=FALSE}
+
+  write_csv(x = d, file = here("output/tables/sampleSizes_forestTypeGroups.csv"))
+
+  rm(d)
+
+```
+
+For reference, we'll generate tables with crown burn severity as well, since 
+these plot counts are difficult to display on the charts which include crown 
+burn severity.
+
+For forest type...
+
+```{r Check Group Sizes - Forest Type and Crown Burn Severity}
+
+  (d <- data %>% 
+    group_count(ref_burn, forestType, crnSev))
+
+```
+
+```{r Check Group Sizes - Forest Type and Crown Burn Severity - Write, include=FALSE}
+
+  write_csv(x = d, file = here("output/tables/sampleSizes_forestTypeBurnSeverity.csv"))
+
+  rm(d)
+
+```
+
+and forest type groups.
+
+```{r Check Group Sizes - Forest Type Groups and Crown Burn Severity}
+
+  (d <- data %>% 
+    group_count(ref_burn, forestType_group, crnSev))
+
+```
+
+```{r Check Group Sizes - Forest Type Groups and Crown Burn Severity - Write, include=FALSE}
+
+  write_csv(x = d, file = here("output/tables/sampleSizes_forestTypeGroupsBurnSeverity.csv"))
+
+  rm(d)
+
+```
+
+# Calulate Biomass Differences in Groups
+
+First, we will calculate by subtracting the average reference plot biomass 
+within each forest type from each individual burn plot in that forest type. Then 
+we can average the burn plots within each forest type.
+
+We can calculate this a couple of different ways, but we should end up with 
+roughly the same answer.
+
+An intermediate step in this code allows us to see the estimated biomass lost 
+individually for each plot. Otherwise, the calculations are probably more 
+convoluted than the next step (Calculation B). But, it is more flexible as 
+we will want to summarize by different groupings and may want to 
+calculate averages directly, or leave plots with individual values (for use in 
+boxplots).
+
+
+```{r Biomass Differences - Calculation A - Formula}
+
+  biomass_diff_a <- function(data, x, y = NULL, sev_col = NULL, calculation) {  # define function with required x, optional y and sev_col
+    sev_quo <- enquo(sev_col)  # capture sev_col as quosure (tidy-eval)
+    has_sev <- !quo_is_null(sev_quo)  # flag: TRUE if sev_col was supplied
+  
+    a <- data %>%
+      select(tpIdent, biomassTotal, forestType,  # keep needed columns
+             forestType_group, ref_burn, crnSev) %>%
+      group_by({{x}}) %>%  # group by primary variable x
+        mutate(biomassMean_ref = mean(biomassTotal[ref_burn == "reference"])) %>%  # calculate mean biomass of reference plots within x
+        ungroup() %>%  # remove grouping
+      group_by({{x}}, {{y}}) %>%  # group by primary variable x and secondary variable y (if given)
+        mutate(biomassDiff = if_else(condition = ref_burn == "burn",  # for burn rows, calculate biomassDiff...
+                                     true = biomassMean_ref - biomassTotal,  # as ref mean biomass minus individual plot biomass
+                                     false = NA)) %>%
+        ungroup() # remove grouping
+  
+        if (calculation == "average") { a %>%  # if we want to calculate the calculation means across groups then
+              filter(ref_burn == "burn") %>%  # keep only burn rows
+              { 
+                if (has_sev) filter(., !is.na(!!sev_quo)) else .  # and if we're including crown severity then remove plots which don't have a crown severity
+                } %>%  # optionally require non-missing sev_col
+              group_by({{x}}, {{y}}) %>%  # group by x and y
+                summarize(meanDiff = mean(biomassDiff), .groups = "keep") %>%  # compute mean difference per group (consider na.rm = TRUE)
+                ungroup() %>%  # remove grouping
+              arrange({{x}}, {{y}})
+          }  # order by x then y
+        else if (calculation == "unaveraged") { a %>%  # otherwise, we won't perform any calculations...
+          filter(ref_burn != "reference") %>%  #... but we will remove all reference plots and...
+          {
+          if (has_sev) filter(., #... if we are summarizing by crown burn severity... 
+                              !is.na(!!sev_quo))  #... then we will remove any plots which don't have a severity value
+          else .
+          }
+        }
+        else if (calculation == "intermediate") {
+          a
+        }
+      } # end function
+
+```
+
+Example of Calculation A output.
+
+```{r Calculation A - Example}
+
+  data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "average")
+
+```
+
+If we average biomass for burn and reference plots, then subtract, it should be 
+just about the same as the calculation above.
+
+This code is probably more intuitive, (and is much simpler) but doesn't include 
+the separation of reference calculation so we can't easily add crown severity as 
+a grouping variable.
+
+Indeed we get the same values, which is a good check, but we want the more 
+flexible calculation going forward - so we'll just use Calculation A.
+
+```{r Biomass Differences - Calculation B - Formula}
+  
+  biomass_diff_b <- function(data, ...) {
+    data %>% 
+      group_by(...) %>% 
+        summarize(biomassMean = mean(biomassTotal),
+                  .groups = "keep") %>% 
+        ungroup() %>% 
+      pivot_wider(names_from = ref_burn, 
+                  names_glue = "{ref_burn}_biomass",
+                  values_from = biomassMean, 
+                  values_fill = 0) %>% 
+      mutate(meanBiomassDiff = reference_biomass - burn_biomass)
+  }
+
+```
+
+Example Calculation B output.
+
+```{r Calculation B - Example}
+
+  data %>% 
+    biomass_diff_b(ref_burn, forestType)
+
+```
+
+# Save Data Tables
+
+We will hard save the summarized data tables as companions to the visualized 
+data below.
+
+```{r Save Data Tables}
+
+# biomass loss for each plot ----
+
+  data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "intermediate") %>% 
+    rename("biomassLoss (mg/ha)" = biomassDiff) %>% 
+  write_csv(file = here("output/tables/biomassLoss_plot.csv"))
+
+# average biomass differences from reference plots in forest types ----
+
+  data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "average") %>% 
+    rename("mean_biomassLoss (mg/ha)" = meanDiff) %>% 
+  write_csv(file = here("output/tables/biomassLoss_forestType.csv"))
+
+# average biomass differences from reference plots in forest type groups ----
+
+  data %>% 
+    biomass_diff_a(x = forestType_group, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "average") %>% 
+    rename("mean_biomassLoss (mg/ha)" = meanDiff) %>% 
+    write_csv(file = here("output/tables/biomassLoss_forestTypeGroup.csv"))
+  
+
+# average biomass differences from reference plots in forest type by crown burn severity ----
+
+  data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = crnSev,
+                   sev_col = crnSev,
+                   calculation  = "average") %>% 
+    rename("mean_biomassLoss (mg/ha)" = meanDiff,
+           crownBurnSeverity = crnSev) %>% 
+    write_csv(file = here("output/tables/biomassLoss_forestTypeGroupBurnSeverity.csv"))
+
+
+# average biomass differences from reference plots in forest type groups by crown burn severity ----
+
+  data %>% 
+    biomass_diff_a(x = forestType_group, 
+                   y = crnSev,
+                   sev_col = crnSev,
+                   calculation  = "average") %>% 
+    rename("mean_biomassLoss (mg/ha)" = meanDiff,
+           crownBurnSeverity = crnSev) %>% 
+    write_csv(file = here("output/tables/biomassLoss_forestTypeGroupBurnSeverity.csv"))
+
+
+```
+
+
+# Visualize
+
+For visualization, we summarize the data for plotting using the biomass_diff_a 
+function.
+
+```{r Plotting Functions, include=FALSE}
+
+  n_labs <- function(data, ...) {
+    data %>% 
+      group_by(...) %>% 
+        summarize(numPlots = n(), .groups = "keep") %>% 
+       ungroup() 
+    }
+
+  n_labs_plotter <- function(x, sourceY, yCorr, size) {
+    yMin <- pData %>% 
+      summarize(minVal = min({{sourceY}}))
+    
+      geom_text(data = nLabs,
+                aes(x = {{x}}, 
+                    y = yMin$minVal - yCorr, 
+                    label = paste0("n=", numPlots)),
+                    inherit.aes = FALSE,
+                size = size)
+  }
+
+```
+
+```{r Plotting Preferences, include=FALSE}
+  
+  severity.colors <- setNames(
+    c("#00A65A", "#FFD300", "#FF7F11", "#D7263D"),
+    c(1:4))
+
+```
+
+## By Forest Type
+
+### Column Chart
+
+```{r Biomass Differences in Forest Type - Calculation A}
+
+# generate a table to label number of plots ----
+
+  nLabs <- data %>% 
+    n_labs(forestType, ref_burn) %>% 
+    filter(ref_burn == "burn")
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "average")
+  
+  pData
+  
+# plot ----
+  
+  pData %>% 
+    ggplot(mapping = aes(x = forestType, y = meanDiff, fill = forestType)) +
+      geom_col() +
+      theme_minimal() +
+      theme(axis.title.x = element_blank(),
+            axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.line.y = element_line(color = "black", linewidth = 0.5)) +
+      geom_hline(yintercept = 0) +
+      labs(y = "Average Biomass Loss (mg/ha)",
+           fill = "Forest Type") +
+      n_labs_plotter(x = forestType,
+                     sourceY = meanDiff,
+                     yCorr = 4,
+                     size = 3)
+  
+```
+Figure 1. Average biomass loss across plots in each of several forest types, 
+calculated as the average biomass in burn plots in each forest type subtracted 
+from the average biomass in reference plots in each forest type.  Forest types 
+were calculated following Forest Inventory and Analysis guidelines, but using 
+biomass as a proxy. Labels below each bar indicate the number of plots in each 
+group. 
+
+```{r Remove Plotting Dfs 1, include=FALSE}
+
+  rm(nLabs, pData)
+
+```
+
+```{r Biomass Differences in Forest Type - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestType_col.jpg"),
+         width = 6, height = 4, dpi = 600)
+
+```
+
+### Box Plot
+
+For boxplots, we skip the averaging step in the function.
+
+```{r Biomass Differences in Forest Type - Calculation A - Boxplot}
+
+# generate a table to label number of plots ----
+
+  nLabs <- data %>% 
+    n_labs(forestType, ref_burn) %>% 
+    filter(ref_burn == "burn")
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "unaveraged") 
+  
+  pData
+  
+# plot ----
+  
+  pData %>%  
+    ggplot(mapping = aes(x = forestType, y = biomassDiff, fill = forestType)) +
+      geom_boxplot() +
+      theme_minimal() +
+      theme(axis.line.y = element_line(color = "black", linewidth = 0.5),
+            axis.text.x = element_text(angle = 45, 
+                                       vjust = 1, 
+                                       hjust = 1, 
+                                       size = rel(.9)),
+            legend.position = "none") +
+      geom_hline(yintercept = 0) +
+      labs(y = "Biomass Loss (mg/ha)",
+           x = "Forest Type") +
+      n_labs_plotter(x = forestType,
+                     sourceY = biomassDiff,
+                     yCorr = 15,
+                     size = 3)
+
+```
+Figure 2. Biomass loss across plots in each of several forest types, calculated 
+as the biomass in each burn plot in each forest type subtracted from the average 
+biomass in reference plots in each forest type.  Forest types were calculated 
+following Forest Inventory and Analysis guidelines, but using biomass as a 
+proxy. Labels below each bar indicate the number of plots in each group. 
+
+```{r Remove Plotting Dfs 2, include=FALSE}
+
+  rm(nLabs, pData)
+
+```
+
+```{r Biomass Differences in Forest Type - Boxplot - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestType_box.jpg"),
+         width = 6, height = 5, dpi = 600)
+
+```
+
+## By Forest Type Groups
+
+We'll do the same thing as above but with the forest type groups.
+
+### Column Chart
+
+```{r Biomass Differences in Forest Type Groups - Calculation A}
+
+# generate a table to label number of plots ----
+
+  nLabs <- data %>% 
+    n_labs(forestType_group, ref_burn) %>% 
+    filter(ref_burn == "burn")
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType_group, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "average") 
+  
+  pData
+  
+# plot ----
+
+  pData %>% 
+    ggplot(mapping = aes(x = forestType_group, 
+                         y = meanDiff, 
+                         fill = forestType_group)) +
+      geom_col() +
+      theme_minimal() +
+      theme(axis.title.x = element_blank(),
+            axis.text.x = element_blank(),
+            axis.ticks.x = element_blank(),
+            axis.line.y = element_line(color = "black", linewidth = 0.5)) +
+      geom_hline(yintercept = 0) +
+      labs(y = "Average Biomass Loss (mg/ha)",
+           fill = "Forest Type Group") + 
+      n_labs_plotter(x = forestType_group,
+                     sourceY = meanDiff,
+                     yCorr = 4,
+                     size = 3)
+  
+```
+Figure 3. Average biomass loss across plots in forest types groups calculated as 
+the average biomass in burn plots in each forest type group subtracted from the 
+average biomass in reference plots in each forest type group.  Forest type groups
+were calculated following Forest Inventory and Analysis guidelines, but using 
+biomass as a proxy. Labels below each bar indicate the number of plots in each 
+group. 
+
+```{r Remove Plotting Dfs 3, include=FALSE}
+
+  rm(nLabs, pData)
+
+```
+
+```{r Biomass Differences in Forest Type Groups - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestTypeGroups_col.jpg"),
+         width = 6, height = 4, dpi = 600)
+
+```
+
+### Box Plot
+
+```{r Biomass Differences in Forest Type Groups - Calculation A - Boxplot}
+
+# generate a table to label number of plots ----
+
+  nLabs <- data %>% 
+    n_labs(forestType_group, ref_burn) %>% 
+    filter(ref_burn == "burn")
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType_group, 
+                   y = NULL,
+                   sev_col = NULL,
+                   calculation  = "unaveraged")
+
+  pData
+  
+# plot ----
+
+  pData %>% 
+    ggplot(mapping = aes(x = forestType_group, 
+                         y = biomassDiff, 
+                         fill = forestType_group)) +
+      geom_boxplot() +
+      theme_minimal() +
+      theme(axis.line.y = element_line(color = "black", linewidth = 0.5),
+            axis.text.x = element_text(angle = 45, 
+                                       vjust = 1, 
+                                       hjust = 1,
+                                       size = rel(.9)),
+            legend.position = "none") +
+      geom_hline(yintercept = 0) +
+      labs(y = "Average Biomass Loss (mg/ha)",
+           x = "Forest Type Group")  +
+        n_labs_plotter(x = forestType_group,
+                       sourceY = biomassDiff,
+                       yCorr = 15,
+                       size = 3)
+  
+```
+Figure 4. Biomass loss across plots in forest type groups, calculated as the 
+biomass in each burn plot in each forest type group subtracted from the
+average biomass in reference plots in each forest type. Forest type groups were 
+calculated following Forest Inventory and Analysis guidelines, but using biomass 
+as a proxy. Labels below each bar indicate the number of plots in each group. 
+
+```{r Remove Plotting Dfs 4, include=FALSE}
+
+  rm(nLabs, pData)
+
+```
+
+```{r Biomass Differences in Forest Type Groups - Boxplot - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestTypeGroups_box.jpg"),
+         width = 6, height = 5, dpi = 600)
+
+```
+
+## By Forest Type and Crown Burn Severity
+
+```{r Biomass Differences in Forest Type and Crown Burn Severity - Calculation A}
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType,
+                   y = crnSev,
+                   sev_col = crnSev,
+                   calculation  = "average")
+
+  pData
+  
+# plot ----
+
+  pData %>% 
+    ggplot(mapping = aes(x = forestType, 
+                         y = meanDiff, 
+                         fill = as.character(crnSev))) +
+      geom_col(position = position_dodge(preserve = "single")) +
+      scale_fill_manual(values = severity.colors) +
+      geom_hline(yintercept = 0) +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 45, 
+                                       vjust = 1, 
+                                       hjust = 1,
+                                       size = rel(.9))) +
+    labs(x = "Forest Type",
+         y = "Average Biomass Loss (mg/ha)",
+         fill = "Crown Burn Severity")
+  
+```
+Figure 5. Average biomass loss across plots in each of several forest types and 
+by plot crown burn severity, calculated as the biomass of each group subtracted 
+from the average biomass in reference plots for each group. Forest types were 
+calculated following Forest Inventory and Analysis guidelines, but using biomass 
+as a proxy.
+
+```{r Remove Plotting Dfs 5, include=FALSE}
+
+ rm(pData)
+
+```
+
+
+```{r Biomass Differences in Forest Type and Crown Burn Severity - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestTypeBurnSeverity_col.jpg"),
+         width = 8, height = 5, dpi = 600)
+
+```
+
+## By Forest Type and Crown Burn Severity
+
+```{r Biomass Differences in Forest Type Groups and Crown Burn Severity - Calculation A}
+
+# perform calculations ----
+
+  pData <- data %>% 
+    biomass_diff_a(x = forestType_group,
+                   y = crnSev,
+                   sev_col = crnSev,
+                   calculation  = "average")
+
+  pData
+  
+# plot ----
+
+  pData %>% 
+    ggplot(mapping = aes(x = forestType_group, 
+                         y = meanDiff, 
+                         fill = as.character(crnSev))) +
+      geom_col(position = position_dodge(preserve = "single")) +
+      scale_fill_manual(values = severity.colors) +
+      geom_hline(yintercept = 0) +
+      theme_bw() +
+      theme(axis.text.x = element_text(angle = 45, 
+                                       vjust = 1, 
+                                       hjust = 1,
+                                       size = rel(.9))) +
+    labs(x = "Forest Type Group",
+         y = "Average Biomass Loss (mg/ha)",
+         fill = "Crown Burn Severity")
+  
+```
+Figure 6. Average biomass loss across plots in each of several forest type 
+groups and by plot crown burn severity, calculated as the biomass of each group 
+subtracted from the average biomass in reference plots for each group. Forest 
+types were calculated following Forest Inventory and Analysis guidelines, but 
+using biomass as a proxy.
+
+
+```{Remove Plotting Dfs 6, include=FALSE}
+
+rm(pData)
+
+```
+
+```{r Biomass Differences in Forest Type Groups and Crown Burn Severity - Write, include=FALSE}
+
+  ggsave(filename = here("output/figures/biomassLoss_forestTypeGroupsBurnSeverity_col.jpg"),
+         width = 6, height = 4, dpi = 600)
+
+```
