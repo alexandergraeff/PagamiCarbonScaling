@@ -1,0 +1,12 @@
+column,definition
+biomassLoss (mg/ha),"biomass, in mg/ha, lost from plots, calculated as the total biomass of the plot(s) subtracted from average biomass of reference plots in the same calculation group "
+biomassMean_ref (mg/ha),"average biomass, in mg/ha, of reference plots, calculated within various groups"
+biomassTotal (mg/ha),"total biomass, in mg/ha in each plot"
+burnPlots,a count of the number of burned plots in each calculation group
+crownBurnSeverity,"crown burn severity, on a scale of 1-4"
+forestType,"Forest Inventory and Analysis (FIA) forest types, calculated using FIA rules with biomass as a proxy"
+forestType_code,code associated with FIA forest type
+forestType_group,forest type grouping associated with FIA forest type
+ref_burn,indicates whether plot is a reference plot or a burn plot
+referencePlots,a count of the number of reference plots in each calculation group
+tpIdent,plot ID

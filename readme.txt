@@ -56,23 +56,41 @@ _______________________________________________________________________________
 
 Contents
 
+Root Directory: Carbon Scaling
+	- Carbon Scaling.Rproj
+		- Open this to run scripts
+	- cols.csv
+		- Contains definitions for columns of tables in /output
+
 1.	├───data
 2. 	│   ├───processed
 3. 	│   ├───raw
 4. 	│   └───reference
 5.	├───output
-6.	├───renv
-7.	└───scripts
+6. 	│   ├───figures
+7. 	│   └───tables
+8.	├───renv
+9.	└───scripts
 
 
+2. Output biomass data file which was used for downstream analyses.
 3. The raw file with biomass data.
 4. Reference data for joining:
-	- forestTypes.csv - FIA forest type designations for each plot
-	- /forestType_determination - contains notes for generation of 
-	  forestTypes.csv
+	- forestTypes.csv - FIA forest type designations for each plot - see
+	  notes below in this document for forest type determination.
 	- severityCrn_forestType_plot.csv - additional plot reference data
 	  including other forest type designations and burn severity
-6. Environment snapshot data, controlled by the renv package
+5. Analysis outputs
+8. Environment snapshot data, controlled by the renv package
+9. Contains scripts for forest type determination, environment setup, and 
+   analysis.
+	- analysis.Rmd - summarize and visualize data, generates outputs
+	- environmentCapture.R - used to replicate R environment, should be
+	  ran before running forestTypes.R or analysis.Rmd
+	- environmentSetup.R - captures R environment, not needed outside of 
+	  development
+	- forestTypes.R - determines forest types for plots using Forest 
+	  Inventory and Analysis (FIA) rules with biomass as a proxy
 
 _______________________________________________________________________________
 	
