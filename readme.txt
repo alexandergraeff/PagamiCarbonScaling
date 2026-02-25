@@ -39,9 +39,13 @@ _______________________________________________________________________________
 
 Git
 
-- This is a local git repository
+- This is a clone of a private GitHub repository: 
+  git@github.com:alexandergraeff/PagamiCarbonScaling.git
 - Though no changes are anticipated by anyone other than the author, any 
-  changes to the directory should be added to the Git history.
+  changes to the directory should be added to the Git history. Contact the 
+  author if changes are made and you need help with Git tracking.
+- Once development is complete, the remote repository will be deleted and the
+  local copy will have Git repository files removed.
 
 _______________________________________________________________________________
 
