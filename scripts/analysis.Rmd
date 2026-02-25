@@ -783,7 +783,7 @@ types were calculated following Forest Inventory and Analysis guidelines, but
 using biomass as a proxy.
 
 
-```{Remove Plotting Dfs 6, include=FALSE}
+```{r Remove Plotting Dfs 6, include=FALSE}
 
 rm(pData)
 
