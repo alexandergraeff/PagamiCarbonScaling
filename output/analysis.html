@@ -1733,10 +1733,11 @@ each forest type for which there are burn plots.</p>
 forest tyoe, however the sample sizes are pretty small where many have
 just 1.</p>
 <pre class="r"><code>(d &lt;- data %&gt;% 
-    group_count(ref_burn, forestType))</code></pre>
+    group_count(ref_burn, forestType) %&gt;% 
+    rename(burnPlots = burn, referencePlots = reference))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["forestType"],"name":[1],"type":["chr"],"align":["left"]},{"label":["burn"],"name":[2],"type":["int"],"align":["right"]},{"label":["reference"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen","2":"25","3":"4"},{"1":"Balsam fir","2":"6","3":"1"},{"1":"Black spruce","2":"17","3":"3"},{"1":"Eastern white pine","2":"3","3":"2"},{"1":"Jack pine","2":"27","3":"4"},{"1":"Northern white-cedar","2":"3","3":"2"},{"1":"Other pine / hardwood","2":"5","3":"1"},{"1":"Paper birch","2":"17","3":"4"},{"1":"Red maple / upland","2":"1","3":"1"},{"1":"Red pine","2":"1","3":"3"},{"1":"Black ash / American elm / red maple","2":"0","3":"1"},{"1":"Tamarack (larch)","2":"0","3":"1"},{"1":"White spruce","2":"0","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[13],"max":[13]},"pages":{}}}
+{"columns":[{"label":["forestType"],"name":[1],"type":["chr"],"align":["left"]},{"label":["burnPlots"],"name":[2],"type":["int"],"align":["right"]},{"label":["referencePlots"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen","2":"25","3":"4"},{"1":"Balsam fir","2":"6","3":"1"},{"1":"Black spruce","2":"17","3":"3"},{"1":"Eastern white pine","2":"3","3":"2"},{"1":"Jack pine","2":"27","3":"4"},{"1":"Northern white-cedar","2":"3","3":"2"},{"1":"Other pine / hardwood","2":"5","3":"1"},{"1":"Paper birch","2":"17","3":"4"},{"1":"Red maple / upland","2":"1","3":"1"},{"1":"Red pine","2":"1","3":"3"},{"1":"Black ash / American elm / red maple","2":"0","3":"1"},{"1":"Tamarack (larch)","2":"0","3":"1"},{"1":"White spruce","2":"0","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[13],"max":[13]},"pages":{}}}
   </script>
 </div>
 <p>Let’s look at the forest type groups as well.</p>
@@ -1744,10 +1745,11 @@ just 1.</p>
 still-low sample sizes. Of course, with this, we lose a lot of forest
 type detail.</p>
 <pre class="r"><code>  (d &lt;- data %&gt;% 
-    group_count(ref_burn, forestType_group))</code></pre>
+    group_count(ref_burn, forestType_group) %&gt;% 
+    rename(burnPlots = burn, referencePlots = reference))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["forestType_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["burn"],"name":[2],"type":["int"],"align":["right"]},{"label":["reference"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen-Birch","2":"42","3":"8"},{"1":"Maple-Beech-Birch","2":"1","3":"1"},{"1":"Oak-Pine","2":"5","3":"1"},{"1":"Spruce-Fir","2":"26","3":"9"},{"1":"White-Red-Jack Pine","2":"31","3":"9"},{"1":"Elm-Ash-Cottonwood","2":"0","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["forestType_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["burnPlots"],"name":[2],"type":["int"],"align":["right"]},{"label":["referencePlots"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen-Birch","2":"42","3":"8"},{"1":"Maple-Beech-Birch","2":"1","3":"1"},{"1":"Oak-Pine","2":"5","3":"1"},{"1":"Spruce-Fir","2":"26","3":"9"},{"1":"White-Red-Jack Pine","2":"31","3":"9"},{"1":"Elm-Ash-Cottonwood","2":"0","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>For reference, we’ll generate tables with crown burn severity as
@@ -1755,18 +1757,22 @@ well, since these plot counts are difficult to display on the charts
 which include crown burn severity.</p>
 <p>For forest type…</p>
 <pre class="r"><code>  (d &lt;- data %&gt;% 
-    group_count(ref_burn, forestType, crnSev))</code></pre>
+    group_count(ref_burn, forestType, crnSev) %&gt;% 
+    rename(burnPlots = burn, referencePlots = reference,
+           crownBurnSeverity = crnSev))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["forestType"],"name":[1],"type":["chr"],"align":["left"]},{"label":["crnSev"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["burn"],"name":[3],"type":["int"],"align":["right"]},{"label":["reference"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen","2":"1","3":"5","4":"0"},{"1":"Aspen","2":"2","3":"5","4":"0"},{"1":"Aspen","2":"3","3":"5","4":"0"},{"1":"Aspen","2":"4","3":"9","4":"0"},{"1":"Aspen","2":"NA","3":"1","4":"4"},{"1":"Balsam fir","2":"3","3":"3","4":"0"},{"1":"Balsam fir","2":"4","3":"3","4":"0"},{"1":"Black spruce","2":"1","3":"4","4":"0"},{"1":"Black spruce","2":"3","3":"4","4":"0"},{"1":"Black spruce","2":"4","3":"9","4":"0"},{"1":"Eastern white pine","2":"1","3":"1","4":"0"},{"1":"Eastern white pine","2":"2","3":"1","4":"0"},{"1":"Eastern white pine","2":"3","3":"1","4":"0"},{"1":"Jack pine","2":"1","3":"3","4":"0"},{"1":"Jack pine","2":"2","3":"2","4":"0"},{"1":"Jack pine","2":"3","3":"2","4":"0"},{"1":"Jack pine","2":"4","3":"19","4":"0"},{"1":"Jack pine","2":"NA","3":"1","4":"4"},{"1":"Northern white-cedar","2":"3","3":"1","4":"0"},{"1":"Northern white-cedar","2":"4","3":"2","4":"0"},{"1":"Other pine / hardwood","2":"1","3":"1","4":"0"},{"1":"Other pine / hardwood","2":"3","3":"2","4":"0"},{"1":"Other pine / hardwood","2":"4","3":"2","4":"0"},{"1":"Paper birch","2":"1","3":"1","4":"0"},{"1":"Paper birch","2":"2","3":"1","4":"0"},{"1":"Paper birch","2":"3","3":"4","4":"0"},{"1":"Paper birch","2":"4","3":"11","4":"0"},{"1":"Red maple / upland","2":"1","3":"1","4":"0"},{"1":"Red pine","2":"4","3":"1","4":"0"},{"1":"Balsam fir","2":"NA","3":"0","4":"1"},{"1":"Black ash / American elm / red maple","2":"NA","3":"0","4":"1"},{"1":"Black spruce","2":"NA","3":"0","4":"3"},{"1":"Eastern white pine","2":"NA","3":"0","4":"2"},{"1":"Northern white-cedar","2":"NA","3":"0","4":"2"},{"1":"Other pine / hardwood","2":"NA","3":"0","4":"1"},{"1":"Paper birch","2":"NA","3":"0","4":"4"},{"1":"Red maple / upland","2":"NA","3":"0","4":"1"},{"1":"Red pine","2":"NA","3":"0","4":"3"},{"1":"Tamarack (larch)","2":"NA","3":"0","4":"1"},{"1":"White spruce","2":"NA","3":"0","4":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["forestType"],"name":[1],"type":["chr"],"align":["left"]},{"label":["crownBurnSeverity"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["burnPlots"],"name":[3],"type":["int"],"align":["right"]},{"label":["referencePlots"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen","2":"1","3":"5","4":"0"},{"1":"Aspen","2":"2","3":"5","4":"0"},{"1":"Aspen","2":"3","3":"5","4":"0"},{"1":"Aspen","2":"4","3":"9","4":"0"},{"1":"Aspen","2":"NA","3":"1","4":"4"},{"1":"Balsam fir","2":"3","3":"3","4":"0"},{"1":"Balsam fir","2":"4","3":"3","4":"0"},{"1":"Black spruce","2":"1","3":"4","4":"0"},{"1":"Black spruce","2":"3","3":"4","4":"0"},{"1":"Black spruce","2":"4","3":"9","4":"0"},{"1":"Eastern white pine","2":"1","3":"1","4":"0"},{"1":"Eastern white pine","2":"2","3":"1","4":"0"},{"1":"Eastern white pine","2":"3","3":"1","4":"0"},{"1":"Jack pine","2":"1","3":"3","4":"0"},{"1":"Jack pine","2":"2","3":"2","4":"0"},{"1":"Jack pine","2":"3","3":"2","4":"0"},{"1":"Jack pine","2":"4","3":"19","4":"0"},{"1":"Jack pine","2":"NA","3":"1","4":"4"},{"1":"Northern white-cedar","2":"3","3":"1","4":"0"},{"1":"Northern white-cedar","2":"4","3":"2","4":"0"},{"1":"Other pine / hardwood","2":"1","3":"1","4":"0"},{"1":"Other pine / hardwood","2":"3","3":"2","4":"0"},{"1":"Other pine / hardwood","2":"4","3":"2","4":"0"},{"1":"Paper birch","2":"1","3":"1","4":"0"},{"1":"Paper birch","2":"2","3":"1","4":"0"},{"1":"Paper birch","2":"3","3":"4","4":"0"},{"1":"Paper birch","2":"4","3":"11","4":"0"},{"1":"Red maple / upland","2":"1","3":"1","4":"0"},{"1":"Red pine","2":"4","3":"1","4":"0"},{"1":"Balsam fir","2":"NA","3":"0","4":"1"},{"1":"Black ash / American elm / red maple","2":"NA","3":"0","4":"1"},{"1":"Black spruce","2":"NA","3":"0","4":"3"},{"1":"Eastern white pine","2":"NA","3":"0","4":"2"},{"1":"Northern white-cedar","2":"NA","3":"0","4":"2"},{"1":"Other pine / hardwood","2":"NA","3":"0","4":"1"},{"1":"Paper birch","2":"NA","3":"0","4":"4"},{"1":"Red maple / upland","2":"NA","3":"0","4":"1"},{"1":"Red pine","2":"NA","3":"0","4":"3"},{"1":"Tamarack (larch)","2":"NA","3":"0","4":"1"},{"1":"White spruce","2":"NA","3":"0","4":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>and forest type groups.</p>
 <pre class="r"><code>  (d &lt;- data %&gt;% 
-    group_count(ref_burn, forestType_group, crnSev))</code></pre>
+    group_count(ref_burn, forestType_group, crnSev) %&gt;% 
+    rename(burnPlots = burn, referencePlots = reference,
+           crownBurnSeverity = crnSev))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["forestType_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["crnSev"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["burn"],"name":[3],"type":["int"],"align":["right"]},{"label":["reference"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen-Birch","2":"1","3":"6","4":"0"},{"1":"Aspen-Birch","2":"2","3":"6","4":"0"},{"1":"Aspen-Birch","2":"3","3":"9","4":"0"},{"1":"Aspen-Birch","2":"4","3":"20","4":"0"},{"1":"Aspen-Birch","2":"NA","3":"1","4":"8"},{"1":"Maple-Beech-Birch","2":"1","3":"1","4":"0"},{"1":"Oak-Pine","2":"1","3":"1","4":"0"},{"1":"Oak-Pine","2":"3","3":"2","4":"0"},{"1":"Oak-Pine","2":"4","3":"2","4":"0"},{"1":"Spruce-Fir","2":"1","3":"4","4":"0"},{"1":"Spruce-Fir","2":"3","3":"8","4":"0"},{"1":"Spruce-Fir","2":"4","3":"14","4":"0"},{"1":"White-Red-Jack Pine","2":"1","3":"4","4":"0"},{"1":"White-Red-Jack Pine","2":"2","3":"3","4":"0"},{"1":"White-Red-Jack Pine","2":"3","3":"3","4":"0"},{"1":"White-Red-Jack Pine","2":"4","3":"20","4":"0"},{"1":"White-Red-Jack Pine","2":"NA","3":"1","4":"9"},{"1":"Elm-Ash-Cottonwood","2":"NA","3":"0","4":"1"},{"1":"Maple-Beech-Birch","2":"NA","3":"0","4":"1"},{"1":"Oak-Pine","2":"NA","3":"0","4":"1"},{"1":"Spruce-Fir","2":"NA","3":"0","4":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["forestType_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["crownBurnSeverity"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["burnPlots"],"name":[3],"type":["int"],"align":["right"]},{"label":["referencePlots"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen-Birch","2":"1","3":"6","4":"0"},{"1":"Aspen-Birch","2":"2","3":"6","4":"0"},{"1":"Aspen-Birch","2":"3","3":"9","4":"0"},{"1":"Aspen-Birch","2":"4","3":"20","4":"0"},{"1":"Aspen-Birch","2":"NA","3":"1","4":"8"},{"1":"Maple-Beech-Birch","2":"1","3":"1","4":"0"},{"1":"Oak-Pine","2":"1","3":"1","4":"0"},{"1":"Oak-Pine","2":"3","3":"2","4":"0"},{"1":"Oak-Pine","2":"4","3":"2","4":"0"},{"1":"Spruce-Fir","2":"1","3":"4","4":"0"},{"1":"Spruce-Fir","2":"3","3":"8","4":"0"},{"1":"Spruce-Fir","2":"4","3":"14","4":"0"},{"1":"White-Red-Jack Pine","2":"1","3":"4","4":"0"},{"1":"White-Red-Jack Pine","2":"2","3":"3","4":"0"},{"1":"White-Red-Jack Pine","2":"3","3":"3","4":"0"},{"1":"White-Red-Jack Pine","2":"4","3":"20","4":"0"},{"1":"White-Red-Jack Pine","2":"NA","3":"1","4":"9"},{"1":"Elm-Ash-Cottonwood","2":"NA","3":"0","4":"1"},{"1":"Maple-Beech-Birch","2":"NA","3":"0","4":"1"},{"1":"Oak-Pine","2":"NA","3":"0","4":"1"},{"1":"Spruce-Fir","2":"NA","3":"0","4":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -1873,7 +1879,9 @@ visualized data below.</p>
                    y = NULL,
                    sev_col = NULL,
                    calculation  = &quot;intermediate&quot;) %&gt;% 
-    rename(&quot;biomassLoss (mg/ha)&quot; = biomassDiff) %&gt;% 
+    rename(&quot;biomassLoss (mg/ha)&quot; = biomassDiff,
+           crownBurnSeverity = crnSev,
+           &quot;biomassMean_ref (mg/ha)&quot; = biomassMean_ref) %&gt;% 
   write_csv(file = here(&quot;output/tables/biomassLoss_plot.csv&quot;))
 
 # average biomass differences from reference plots in forest types ----

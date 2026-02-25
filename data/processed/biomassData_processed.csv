@@ -1,4 +1,4 @@
-tpIdent,biomassTotal,forestType_code,forestType,forestType_group,ref_burn,crnSev
+tpIdent,biomassTotal,forestType_code,forestType,forestType_group,ref_burn,crownBurnSeverity
 R-001-01,58.62192020628308,901,Aspen,Aspen-Birch,burn,3
 R-001-03,61.544441162525374,121,Balsam fir,Spruce-Fir,burn,3
 R-001-04,46.98842335290052,901,Aspen,Aspen-Birch,burn,1

@@ -1,4 +1,4 @@
-tpIdent,biomassTotal,forestType,forestType_group,ref_burn,crnSev,biomassMean_ref,biomassLoss (mg/ha)
+tpIdent,biomassTotal,forestType,forestType_group,ref_burn,crownBurnSeverity,biomassMean_ref (mg/ha),biomassLoss (mg/ha)
 R-001-01,58.62192020628308,Aspen,Aspen-Birch,burn,3,85.39704730330179,26.77512709701871
 R-001-03,61.544441162525374,Balsam fir,Spruce-Fir,burn,3,64.29046238172457,2.746021219199193
 R-001-04,46.98842335290052,Aspen,Aspen-Birch,burn,1,85.39704730330179,38.40862395040127
