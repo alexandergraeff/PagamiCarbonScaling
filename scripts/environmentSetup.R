@@ -14,9 +14,7 @@
   # This should automatically happen when opening the .Rproj
   # but doesn't hurt to do it here in case it doesn't
 
-  message("Activating renv...")
   renv::activate()
-  message("Renv activated!")
 
 # 3. Restore packages from lockfile
 
@@ -26,5 +24,3 @@
   } else {
     message("No renv.lock file found. Consider running renv::snapshot() after installing packages.")
   }
-
-message("Environment setup complete!")
