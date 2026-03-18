@@ -63,7 +63,7 @@ Contents
 Root Directory: Carbon Scaling
 	- Carbon Scaling.Rproj
 		- Open this to run scripts
-	- cols.csv
+	- columnDefinitons.csv
 		- Contains definitions for columns of tables in /output
 
 1.	├───data
