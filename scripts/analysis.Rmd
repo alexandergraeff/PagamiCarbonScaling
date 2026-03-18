@@ -57,9 +57,11 @@ an average biomass per forest type and then take the difference between
 reference plots and burns plots within a forest type to estimate the amount of 
 biomass lost from the burn. 
 
-# Create Formulas for Repeated Code
+# Create Functions for Repeated Code
 
-```{r Formulas}
+```{r Functions}
+
+# count the number of plots in groups
 
   group_count <- function(data, ...) {
     data %>% 
@@ -67,6 +69,12 @@ biomass lost from the burn.
         summarize(n = n(), .groups = "keep") %>% 
         ungroup() %>% 
       pivot_wider(names_from = ref_burn, values_from = n, values_fill = 0)
+  }
+
+# standard error
+
+  se <- function(var) {
+    sd(var)/sqrt(length(var))
   }
 
 ```
@@ -230,6 +238,37 @@ and forest type groups.
 
 ```
 
+# Calculate Biomass by Plot Type and Forest Type
+
+We will summarize the main data table to show average biomass by forest type and 
+reference/burn.
+
+```{r Biomass by Plot Type and Forest Type}
+
+biomassMeans <- data %>% 
+    group_by(forestType, ref_burn) %>% 
+      summarize(biomassMean = mean(biomassTotal),
+                se = se(biomassTotal),
+                numPlots = n(),
+                .groups = "drop")
+
+  biomassMeans
+  
+```
+
+
+```{r Biomass by Plot Type and Forest Type - Write}
+
+biomassMeans %>% 
+  rename("mean_biomass (mg/ha)" = biomassMean) %>% 
+  write_excel_csv(
+      file = here("output/tables/biomassMeans_forestTypePlotType.csv")
+    )
+  
+  rm(biomassMeans)
+
+```
+
 # Calulate Biomass Differences in Groups
 
 First, we will calculate by subtracting the average reference plot biomass 
@@ -290,7 +329,7 @@ boxplots).
 
 ```
 
-Example of Calculation A output.
+Examples of Calculation A output.
 
 ```{r Calculation A - Example}
 
@@ -352,9 +391,10 @@ data below.
                    y = NULL,
                    sev_col = NULL,
                    calculation  = "intermediate") %>% 
-    rename("biomassLoss (mg/ha)" = biomassDiff,
+    rename("biomassTotal (mg/ha)" = biomassTotal,
+           "biomassLoss (mg/ha)" = biomassDiff,
            crownBurnSeverity = crnSev,
-           "biomassMean_ref (mg/ha)" = biomassMean_ref) %>% 
+           "mean_biomass_ref (mg/ha)" = biomassMean_ref) %>% 
   write_csv(file = here("output/tables/biomassLoss_plot.csv"))
 
 # average biomass differences from reference plots in forest types ----
@@ -796,3 +836,30 @@ rm(pData)
          width = 6, height = 4, dpi = 600)
 
 ```
+
+# Compile Output Columns for Definitions File
+
+```{r Compile Columns}
+
+  filesList <- list.files(path = here("output/tables"),  # create a list of all of the data files
+                          pattern = "*.csv", 
+                          full.names = TRUE)
+
+  dataList <- filesList %>% 
+    map(.f = ~read_csv(.x, show_col_types = FALSE))
+
+  names(dataList) <- basename(filesList)  # set the names of each table in the data list to the year (extracted from the file name)
+
+  a <- dataList %>%  # read the detail sheet from each file into a list
+    map(.f = ~ colnames(.x)) %>% 
+    list_c() %>% 
+    unique() %>% 
+    tibble(column = ., definiton = "")
+  
+  a
+  
+  a %>% 
+    write_csv(file = here("cols.csv"))
+  
+```
+

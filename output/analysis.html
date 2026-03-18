@@ -11,7 +11,7 @@
 
 <meta name="author" content="Alexander Graeff" />
 
-<meta name="date" content="2026-02-25" />
+<meta name="date" content="2026-03-18" />
 
 <title>Estimating Biomoss Loss from Pagami Creek Fire</title>
 
@@ -1624,7 +1624,7 @@ display: none;
 <h1 class="title toc-ignore">Estimating Biomoss Loss from Pagami Creek
 Fire</h1>
 <h4 class="author">Alexander Graeff</h4>
-<h4 class="date">2026-02-25</h4>
+<h4 class="date">2026-03-18</h4>
 
 </div>
 
@@ -1644,14 +1644,22 @@ calculate an average biomass per forest type and then take the
 difference between reference plots and burns plots within a forest type
 to estimate the amount of biomass lost from the burn.</p>
 </div>
-<div id="create-formulas-for-repeated-code" class="section level1">
-<h1>Create Formulas for Repeated Code</h1>
-<pre class="r"><code>  group_count &lt;- function(data, ...) {
+<div id="create-functions-for-repeated-code" class="section level1">
+<h1>Create Functions for Repeated Code</h1>
+<pre class="r"><code># count the number of plots in groups
+
+  group_count &lt;- function(data, ...) {
     data %&gt;% 
       group_by(...) %&gt;% 
         summarize(n = n(), .groups = &quot;keep&quot;) %&gt;% 
         ungroup() %&gt;% 
       pivot_wider(names_from = ref_burn, values_from = n, values_fill = 0)
+  }
+
+# standard error
+
+  se &lt;- function(var) {
+    sd(var)/sqrt(length(var))
   }</code></pre>
 </div>
 <div id="import-data" class="section level1">
@@ -1776,6 +1784,31 @@ which include crown burn severity.</p>
   </script>
 </div>
 </div>
+<div id="calculate-biomass-by-plot-type-and-forest-type" class="section level1">
+<h1>Calculate Biomass by Plot Type and Forest Type</h1>
+<p>We will summarize the main data table to show average biomass by
+forest type and reference/burn.</p>
+<pre class="r"><code>biomassMeans &lt;- data %&gt;% 
+    group_by(forestType, ref_burn) %&gt;% 
+      summarize(biomassMean = mean(biomassTotal),
+                se = se(biomassTotal),
+                numPlots = n(),
+                .groups = &quot;drop&quot;)
+
+  biomassMeans</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["forestType"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ref_burn"],"name":[2],"type":["chr"],"align":["left"]},{"label":["biomassMean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["se"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["numPlots"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"Aspen","2":"burn","3":"66.09238","4":"6.604903","5":"25"},{"1":"Aspen","2":"reference","3":"85.39705","4":"24.168484","5":"4"},{"1":"Balsam fir","2":"burn","3":"44.05317","4":"8.714034","5":"6"},{"1":"Balsam fir","2":"reference","3":"64.29046","4":"NA","5":"1"},{"1":"Black ash / American elm / red maple","2":"reference","3":"75.71825","4":"NA","5":"1"},{"1":"Black spruce","2":"burn","3":"57.21705","4":"4.455645","5":"17"},{"1":"Black spruce","2":"reference","3":"84.26249","4":"23.155481","5":"3"},{"1":"Eastern white pine","2":"burn","3":"85.86522","4":"20.116752","5":"3"},{"1":"Eastern white pine","2":"reference","3":"92.77057","4":"5.471481","5":"2"},{"1":"Jack pine","2":"burn","3":"84.89764","4":"6.537955","5":"27"},{"1":"Jack pine","2":"reference","3":"97.90814","4":"21.837506","5":"4"},{"1":"Northern white-cedar","2":"burn","3":"92.76594","4":"25.980760","5":"3"},{"1":"Northern white-cedar","2":"reference","3":"142.16148","4":"5.608827","5":"2"},{"1":"Other pine / hardwood","2":"burn","3":"75.96084","4":"14.798619","5":"5"},{"1":"Other pine / hardwood","2":"reference","3":"217.50807","4":"NA","5":"1"},{"1":"Paper birch","2":"burn","3":"54.79826","4":"4.983692","5":"17"},{"1":"Paper birch","2":"reference","3":"77.30819","4":"14.149401","5":"4"},{"1":"Red maple / upland","2":"burn","3":"90.37504","4":"NA","5":"1"},{"1":"Red maple / upland","2":"reference","3":"57.22136","4":"NA","5":"1"},{"1":"Red pine","2":"burn","3":"112.96874","4":"NA","5":"1"},{"1":"Red pine","2":"reference","3":"123.00158","4":"27.422561","5":"3"},{"1":"Tamarack (larch)","2":"reference","3":"58.52499","4":"NA","5":"1"},{"1":"White spruce","2":"reference","3":"81.51169","4":"16.772257","5":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>biomassMeans %&gt;% 
+  rename(&quot;mean_biomass (mg/ha)&quot; = biomassMean) %&gt;% 
+  write_excel_csv(
+      file = here(&quot;output/tables/biomassMeans_forestTypePlotType.csv&quot;)
+    )
+  
+  rm(biomassMeans)</code></pre>
+</div>
 <div id="calulate-biomass-differences-in-groups" class="section level1">
 <h1>Calulate Biomass Differences in Groups</h1>
 <p>First, we will calculate by subtracting the average reference plot
@@ -1828,7 +1861,7 @@ values (for use in boxplots).</p>
           a
         }
       } # end function</code></pre>
-<p>Example of Calculation A output.</p>
+<p>Examples of Calculation A output.</p>
 <pre class="r"><code>  data %&gt;% 
     biomass_diff_a(x = forestType, 
                    y = NULL,
@@ -1879,9 +1912,10 @@ visualized data below.</p>
                    y = NULL,
                    sev_col = NULL,
                    calculation  = &quot;intermediate&quot;) %&gt;% 
-    rename(&quot;biomassLoss (mg/ha)&quot; = biomassDiff,
+    rename(&quot;biomassTotal (mg/ha)&quot; = biomassTotal,
+           &quot;biomassLoss (mg/ha)&quot; = biomassDiff,
            crownBurnSeverity = crnSev,
-           &quot;biomassMean_ref (mg/ha)&quot; = biomassMean_ref) %&gt;% 
+           &quot;mean_biomass_ref (mg/ha)&quot; = biomassMean_ref) %&gt;% 
   write_csv(file = here(&quot;output/tables/biomassLoss_plot.csv&quot;))
 
 # average biomass differences from reference plots in forest types ----
@@ -2216,6 +2250,32 @@ of each group subtracted from the average biomass in reference plots for
 each group. Forest types were calculated following Forest Inventory and
 Analysis guidelines, but using biomass as a proxy.</p>
 </div>
+</div>
+<div id="compile-output-columns-for-definitions-file" class="section level1">
+<h1>Compile Output Columns for Definitions File</h1>
+<pre class="r"><code>  filesList &lt;- list.files(path = here(&quot;output/tables&quot;),  # create a list of all of the data files
+                          pattern = &quot;*.csv&quot;, 
+                          full.names = TRUE)
+
+  dataList &lt;- filesList %&gt;% 
+    map(.f = ~read_csv(.x, show_col_types = FALSE))
+
+  names(dataList) &lt;- basename(filesList)  # set the names of each table in the data list to the year (extracted from the file name)
+
+  a &lt;- dataList %&gt;%  # read the detail sheet from each file into a list
+    map(.f = ~ colnames(.x)) %&gt;% 
+    list_c() %&gt;% 
+    unique() %&gt;% 
+    tibble(column = ., definiton = &quot;&quot;)
+  
+  a</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["column"],"name":[1],"type":["chr"],"align":["left"]},{"label":["definiton"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"forestType","2":""},{"1":"mean_biomassLoss (mg/ha)","2":""},{"1":"forestType_group","2":""},{"1":"crownBurnSeverity","2":""},{"1":"tpIdent","2":""},{"1":"biomassTotal (mg/ha)","2":""},{"1":"ref_burn","2":""},{"1":"mean_biomass_ref (mg/ha)","2":""},{"1":"biomassLoss (mg/ha)","2":""},{"1":"mean_biomass (mg/ha)","2":""},{"1":"se","2":""},{"1":"numPlots","2":""},{"1":"burnPlots","2":""},{"1":"referencePlots","2":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>  a %&gt;% 
+    write_csv(file = here(&quot;cols.csv&quot;))</code></pre>
 </div>
 
 

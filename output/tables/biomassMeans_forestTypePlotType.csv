@@ -1,0 +1,24 @@
+﻿"forestType","ref_burn","mean_biomass (mg/ha)","se","numPlots"
+"Aspen","burn",66.09237907005382,6.604902600768956,25
+"Aspen","reference",85.39704730330179,24.168483976133054,4
+"Balsam fir","burn",44.05316949679424,8.714033737992981,6
+"Balsam fir","reference",64.29046238172457,NA,1
+"Black ash / American elm / red maple","reference",75.7182510269801,NA,1
+"Black spruce","burn",57.21705192766073,4.455644681191307,17
+"Black spruce","reference",84.2624947186815,23.15548104507377,3
+"Eastern white pine","burn",85.86521950437246,20.11675201925831,3
+"Eastern white pine","reference",92.77056945183722,5.4714808022371315,2
+"Jack pine","burn",84.8976361801257,6.537955297725354,27
+"Jack pine","reference",97.90814256509401,21.837505617152697,4
+"Northern white-cedar","burn",92.76593808627669,25.98076002771591,3
+"Northern white-cedar","reference",142.16148412393122,5.6088265061722495,2
+"Other pine / hardwood","burn",75.96084118691304,14.798618516140492,5
+"Other pine / hardwood","reference",217.50807221029626,NA,1
+"Paper birch","burn",54.79826057986776,4.983692140202149,17
+"Paper birch","reference",77.30818869209546,14.14940131851068,4
+"Red maple / upland","burn",90.37503774439003,NA,1
+"Red maple / upland","reference",57.22136250104039,NA,1
+"Red pine","burn",112.96874381976949,NA,1
+"Red pine","reference",123.00157592131892,27.422561174304338,3
+"Tamarack (larch)","reference",58.52499447905471,NA,1
+"White spruce","reference",81.51168906285577,16.772256765605633,2
